@@ -1,9 +1,9 @@
 <?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use core\Application;
+
 header('Content-Type: application/json');
 
-
-
- echo json_encode([
-     "api_version" => "1.0.0",
-     "type" => "ecommerce_api",
- ]);
+Application::init();

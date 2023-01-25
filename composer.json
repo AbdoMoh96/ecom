@@ -2,7 +2,8 @@
     "name": "windo/ecom",
     "autoload": {
         "psr-4": {
-            "Windo\\Ecom\\": "src/"
+            "app\\": "./app",
+            "core\\": "./core"
         }
     },
     "authors": [
