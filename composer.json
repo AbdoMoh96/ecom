@@ -1,0 +1,15 @@
+{
+    "name": "windo/ecom",
+    "autoload": {
+        "psr-4": {
+            "Windo\\Ecom\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdelrahman Mohammed",
+            "email": "abdo.moh96@outlook.com"
+        }
+    ],
+    "require": {}
+}
