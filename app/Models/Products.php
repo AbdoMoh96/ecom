@@ -14,10 +14,18 @@ class Products
                        p.sku as 'sku',
                        p.name as 'name',
                        p.price as 'price',
-                       pt.name as 'type'
+                       pt.id as 'type_id',
+                       pt.name as 'type',
+                       pa.size as 'size',
+                       pa.weight as 'weight',
+                       pa.height as 'height',
+                       pa.width as 'width',
+                       pa.length as 'length'
                 FROM products as p
                 LEFT JOIN product_types as pt
                 ON p.type = pt.id
+                LEFT JOIN product_attributes as pa
+                ON pa.product_id = p.id;
              ");
     }
 

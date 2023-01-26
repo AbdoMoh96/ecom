@@ -45,4 +45,15 @@ class DB
         }
     }
 
+    public static function queryVoid($query, $args = []){
+        $stmt = self::$instance->prepare($query);
+        $stmt->execute($args);
+    }
+
+    public static function insertGetId($query, $args = []){
+        $stmt = self::$instance->prepare($query);
+        $stmt->execute($args);
+        return $stmt->lastInsertId();
+    }
+
 }
