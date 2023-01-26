@@ -3,27 +3,15 @@
 namespace core;
 
 use core\Providers\Providers;
-use core\Router; // temp
+use core\Request;
+use core\connection\DB;
 
  class Application {
 
-
-
-     public function __construct(){
-
-     }
-
      public static function init(){
-
-         // make a db connection
-         // generate all the routes
-         // get route from request class
+         $db = new DB();
+         $db->connect();
          Providers::init();
-
-         echo json_encode(Router::$routes);
+         Request::handle();
      }
-
-
-
-
  }

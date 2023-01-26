@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 25, 2023 at 06:35 PM
+-- Generation Time: Jan 26, 2023 at 11:26 PM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.30
 
@@ -35,6 +35,15 @@ CREATE TABLE `products` (
   `type` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `sku`, `name`, `price`, `type`) VALUES
+(1, '45454-45454-45454', 'the matrix', '200.00', 1),
+(2, '2321-3212-9698', 'rich dad poor dad', '25.00', 2),
+(3, '7878-6548-3258', 'lazy boy chair', '1000.00', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +59,15 @@ CREATE TABLE `product_attributes` (
   `width` float DEFAULT NULL,
   `length` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_attributes`
+--
+
+INSERT INTO `product_attributes` (`id`, `product_id`, `size`, `weight`, `height`, `width`, `length`) VALUES
+(1, 1, 700, NULL, NULL, NULL, NULL),
+(2, 2, NULL, 300, NULL, NULL, NULL),
+(3, 3, NULL, NULL, 150, 60, 50);
 
 -- --------------------------------------------------------
 
@@ -104,13 +122,13 @@ ALTER TABLE `product_types`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_types`

@@ -7,8 +7,8 @@ use Dotenv\Dotenv;
 
 Dotenv::createImmutable(__DIR__.'/../')->load();
 
-header('Content-Type: application/json');
-
 Application::init();
+
+
 
 

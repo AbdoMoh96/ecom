@@ -6,14 +6,10 @@ namespace core;
 
  class Router {
 
-     public static $routes = [
-      'get' => [],
-      'post' => [],
-      'delete' => []
-     ];
+     public static $routes = [];
 
      public static function get($route, $controller){
-       self::$routes['get'][] =  [$route => [$controller]];
+         self::$routes['get'][$route] = $controller;
      }
      public static function post(){}
      public static function delete(){}
