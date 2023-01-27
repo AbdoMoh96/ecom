@@ -4,8 +4,16 @@ use core\Router;
 use app\Controllers\Api\ProductController;
 
 Router::get('/', function (){
+    redirect('/api');
+});
+
+Router::get('/api', function (){
     jsonResponse('ecom api version 1.0.0', 200);
 });
 
-Router::get('/products', [ProductController::class, 'index']);
+Router::get('/api/products/list', [ProductController::class, 'index']);
+
+Router::post('/api/products/new', [ProductController::class, 'store']);
+
+Router::delete('/api/products/delete', [ProductController::class, 'destroy']);
 

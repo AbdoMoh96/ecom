@@ -5,3 +5,8 @@
      http_response_code($status);
      echo json_encode($data);
  }
+
+ function redirect($url){
+     header("Location: $url");
+     die();
+ }
