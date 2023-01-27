@@ -15,9 +15,21 @@ class ProductController
     }
 
     public function index(){
-
         jsonResponse([
             $this->productService->getAllProducts()
+        ], 200);
+    }
+
+    public function store(){
+        jsonResponse([
+            'message' => 'product created successfully!!'
+        ], 200);
+    }
+
+
+    public function destroy(){
+        jsonResponse([
+            'message' => 'products deleted!!'
         ], 200);
     }
 }
