@@ -26,7 +26,7 @@ class Request
                 exit();
             }
         }else{
-            jsonResponse("nah man we don't have that", 404);
+            jsonResponse("nothing here!!", 404);
         }
     }
 }
