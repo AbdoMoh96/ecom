@@ -2,7 +2,6 @@
 
 namespace app\Controllers\Api;
 
-use app\Models\Products;
 use app\Services\ProductService;
 
 class ProductController
@@ -14,20 +13,27 @@ class ProductController
         $this->productService = new ProductService();
     }
 
-    public function index(){
-        jsonResponse([
+    public function index()
+    {
+        jsonResponse(
             $this->productService->getAllProducts()
-        ], 200);
+            , 200);
     }
 
-    public function store(){
+    public function store()
+    {
+        $this->productService->storeProduct(Request());
+
         jsonResponse([
             'message' => 'product created successfully!!'
         ], 200);
     }
 
 
-    public function destroy(){
+    public function destroy()
+    {
+        $this->productService->deleteProducts(Request());
+
         jsonResponse([
             'message' => 'products deleted!!'
         ], 200);
