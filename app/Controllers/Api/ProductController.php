@@ -14,20 +14,25 @@ class ProductController
         $this->productService = new ProductService();
     }
 
-    public function index(){
+    public function index()
+    {
         jsonResponse([
             $this->productService->getAllProducts()
         ], 200);
     }
 
-    public function store(){
+    public function store()
+    {
+        $this->productService->storeProduct(Response());
+
         jsonResponse([
             'message' => 'product created successfully!!'
         ], 200);
     }
 
 
-    public function destroy(){
+    public function destroy()
+    {
         jsonResponse([
             'message' => 'products deleted!!'
         ], 200);
