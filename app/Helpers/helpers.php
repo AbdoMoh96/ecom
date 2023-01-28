@@ -8,7 +8,7 @@ function dd($data)
     die();
 }
 
-function Response()
+function Request()
 {
     return json_decode(file_get_contents('php://input'), true);
 }

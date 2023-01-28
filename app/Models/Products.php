@@ -39,6 +39,18 @@ class Products
              ");
     }
 
+    public static function delete($ids)
+    {
+        foreach ($ids as $id) {
+            DB::queryVoid("DELETE FROM product_attributes WHERE product_id = :id", [
+                "id" => $id
+            ]);
+
+            DB::queryVoid("DELETE FROM products WHERE id = :id", [
+                "id" => $id
+            ]);
+        }
+    }
 
     public function save()
     {

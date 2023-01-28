@@ -25,4 +25,12 @@ class ProductService
         $product->length = $data['length'];
         $product->save();
     }
+
+    public function deleteProducts($data)
+    {
+
+        $ids = $data['product_ids'];
+
+        Products::delete($ids);
+    }
 }

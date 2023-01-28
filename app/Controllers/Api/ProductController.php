@@ -4,6 +4,7 @@ namespace app\Controllers\Api;
 
 use app\Models\Products;
 use app\Services\ProductService;
+use http\Env\Response;
 
 class ProductController
 {
@@ -23,7 +24,7 @@ class ProductController
 
     public function store()
     {
-        $this->productService->storeProduct(Response());
+        $this->productService->storeProduct(Request());
 
         jsonResponse([
             'message' => 'product created successfully!!'
@@ -33,6 +34,8 @@ class ProductController
 
     public function destroy()
     {
+        $this->productService->deleteProducts(Request());
+
         jsonResponse([
             'message' => 'products deleted!!'
         ], 200);
