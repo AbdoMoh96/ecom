@@ -2,9 +2,7 @@
 
 namespace app\Controllers\Api;
 
-use app\Models\Products;
 use app\Services\ProductService;
-use http\Env\Response;
 
 class ProductController
 {
@@ -17,9 +15,9 @@ class ProductController
 
     public function index()
     {
-        jsonResponse([
+        jsonResponse(
             $this->productService->getAllProducts()
-        ], 200);
+            , 200);
     }
 
     public function store()

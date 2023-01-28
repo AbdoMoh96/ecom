@@ -3,6 +3,7 @@
 namespace app\Services;
 
 use app\Models\Products;
+use app\Models\ProductTypes;
 
 class ProductService
 {
@@ -32,5 +33,10 @@ class ProductService
         $ids = $data['product_ids'];
 
         Products::delete($ids);
+    }
+
+    public function getProductTypes()
+    {
+        return ProductTypes::all();
     }
 }
