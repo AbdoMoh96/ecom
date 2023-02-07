@@ -39,7 +39,7 @@ class ProductService
                 break;
             default :
                 jsonResponse(['message' => 'product type id not found'], 400);
-                break;
+                die();
         }
     }
 
