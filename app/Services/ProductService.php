@@ -4,27 +4,43 @@ namespace app\Services;
 
 use app\Models\Products;
 use app\Models\ProductTypes;
+use app\Traits\ProductsTrait;
+/*use app\Models\Dvd;
+use app\Models\Book;
+use app\Models\Furniture;*/
 
 class ProductService
 {
+    use ProductsTrait;
+
     public function getAllProducts()
     {
         return Products::all();
+
+        // polymorphism tested
+        /*return [
+            ...Dvd::all(),
+            ...Book::all(),
+            ...Furniture::all()
+        ];*/
     }
 
     public function storeProduct($data)
     {
-        $product = new Products();
-        $product->sku = $data['sku'];
-        $product->name = $data['name'];
-        $product->price = $data['price'];
-        $product->type_id = $data['type_id'];
-        $product->size = $data['size'];
-        $product->weight = $data['weight'];
-        $product->height = $data['height'];
-        $product->width = $data['width'];
-        $product->length = $data['length'];
-        $product->save();
+        switch ($data['type_id']){
+            case 1 :
+                $this->storeDvd($data);
+                break;
+            case 2 :
+                $this->storeBook($data);
+                break;
+            case  3 :
+                $this->storeFurniture($data);
+                break;
+            default :
+                jsonResponse(['message' => 'product type id not found'], 400);
+                break;
+        }
     }
 
     public function deleteProducts($data)

@@ -4,11 +4,12 @@ namespace app\Models;
 
 use core\connection\DB;
 
-abstract class Products
+final class Furniture extends Products
 {
-    public string $sku;
-    public string $name;
-    public float $price;
+    private static int $typeId = 3;
+    public float $height;
+    public float $width;
+    public float $length;
 
     public static function all()
     {
@@ -20,8 +21,6 @@ abstract class Products
                        p.price as 'price',
                        pt.id as 'type_id',
                        pt.name as 'type',
-                       pa.size as 'size',
-                       pa.weight as 'weight',
                        pa.height as 'height',
                        pa.width as 'width',
                        pa.length as 'length'
@@ -29,25 +28,15 @@ abstract class Products
                 LEFT JOIN product_types as pt
                 ON p.type = pt.id
                 LEFT JOIN product_attributes as pa
-                ON pa.product_id = p.id;
-             ");
+                ON pa.product_id = p.id
+                WHERE pt.id = :typeId
+             ",'get',[
+            'typeId' => self::$typeId
+        ]);
     }
 
-    public static function delete($ids)
-    {
-        foreach ($ids as $id) {
-            DB::queryVoid("DELETE FROM product_attributes WHERE product_id = :id", [
-                "id" => $id
-            ]);
 
-            DB::queryVoid("DELETE FROM products WHERE id = :id", [
-                "id" => $id
-            ]);
-        }
-    }
-
-    abstract public function save();
-/*    public function save()
+    public function save()
     {
         $product_id = DB::insertGetId("
         INSERT INTO products(`sku`,`name`,`price`,`type`)
@@ -56,20 +45,17 @@ abstract class Products
             "sku" => $this->sku,
             "name" => $this->name,
             "price" => $this->price,
-            "type_id" => $this->type_id
+            "type_id" => self::$typeId
         ]);
 
         DB::queryVoid("
-        INSERT INTO product_attributes(`product_id`, `size`, `weight`, `height`, `width`, `length`)
-        VALUES (:product_id, :size, :weight, :height, :width, :length);
+        INSERT INTO product_attributes(`product_id`, `height`, `width`, `length`)
+        VALUES (:product_id, :height, :width, :length);
      ", [
             "product_id" => $product_id,
-            "size" => $this->size,
-            "weight" => $this->weight,
             "height" => $this->height,
             "width" => $this->width,
             "length" => $this->length
         ]);
-    }*/
-
+    }
 }
