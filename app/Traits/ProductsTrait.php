@@ -9,6 +9,12 @@ use core\connection\DB;
 
 trait ProductsTrait
 {
+    private array $methodSelector = [
+        1 => 'storeDvd',
+        2 => 'storeBook',
+        3 => 'storeFurniture'
+    ];
+
     private function storeDvd($data)
     {
         if ($this->isUnique($data)) {
@@ -22,23 +28,6 @@ trait ProductsTrait
             jsonResponse(['message' => 'product already exists'], 400);
             die();
         }
-    }
-
-    private function isUnique($data)
-    {
-        $product = DB::query("
-                SELECT 
-                       sku
-                FROM products
-                WHERE products.sku = :sku
-             ", 'first', [
-            'sku' => $data['sku']
-        ]);
-
-        if ($product['sku']) {
-            return false;
-        }
-        return true;
     }
 
     private function storeBook($data)
@@ -71,5 +60,22 @@ trait ProductsTrait
             jsonResponse(['message' => 'product already exists'], 400);
             die();
         }
+    }
+
+    private function isUnique($data)
+    {
+        $product = DB::query("
+                SELECT 
+                       sku
+                FROM products
+                WHERE products.sku = :sku
+             ", 'first', [
+            'sku' => $data['sku']
+        ]);
+
+        if ($product['sku']) {
+            return false;
+        }
+        return true;
     }
 }
