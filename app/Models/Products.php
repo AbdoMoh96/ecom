@@ -47,29 +47,4 @@ abstract class Products
     }
 
     abstract public function save();
-/*    public function save()
-    {
-        $product_id = DB::insertGetId("
-        INSERT INTO products(`sku`,`name`,`price`,`type`)
-        VALUES (:sku, :name, :price, :type_id);
-     ", [
-            "sku" => $this->sku,
-            "name" => $this->name,
-            "price" => $this->price,
-            "type_id" => $this->type_id
-        ]);
-
-        DB::queryVoid("
-        INSERT INTO product_attributes(`product_id`, `size`, `weight`, `height`, `width`, `length`)
-        VALUES (:product_id, :size, :weight, :height, :width, :length);
-     ", [
-            "product_id" => $product_id,
-            "size" => $this->size,
-            "weight" => $this->weight,
-            "height" => $this->height,
-            "width" => $this->width,
-            "length" => $this->length
-        ]);
-    }*/
-
 }
